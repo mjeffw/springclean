@@ -4,10 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import us.hypermediocrity.springclean.adapter.currencyconvert.CurrencyConverterAdapter;
 import us.hypermediocrity.springclean.adapter.customer.CustomerPortAdapter;
 import us.hypermediocrity.springclean.adapter.invoice.InvoicePortAdapter;
 import us.hypermediocrity.springclean.application.Application;
 import us.hypermediocrity.springclean.application.ApplicationImpl;
+import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
 import us.hypermediocrity.springclean.domain.usecase.MakePayment;
@@ -47,5 +49,10 @@ public class SpringCleanApplication {
   @Bean
   public CustomerPort getCustomerPort() {
     return new CustomerPortAdapter();
+  }
+
+  @Bean
+  public CurrencyExchangePort getCurrencyExchangePort() {
+    return new CurrencyConverterAdapter();
   }
 }

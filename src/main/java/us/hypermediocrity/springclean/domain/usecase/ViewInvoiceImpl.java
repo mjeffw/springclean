@@ -6,10 +6,17 @@ import us.hypermediocrity.springclean.domain.entity.Customer;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
-import us.hypermediocrity.springclean.domain.port.InvoiceViewBuilder;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
 import us.hypermediocrity.springclean.domain.port.InvoiceView;
+import us.hypermediocrity.springclean.domain.port.InvoiceViewBuilder;
 
+/**
+ * Another class that is only public because of the configuration in
+ * springclean.SpringCleanApplication
+ * 
+ * @author jw9615
+ *
+ */
 public class ViewInvoiceImpl implements ViewInvoice {
   @Autowired
   private InvoicePort invoicePort;
