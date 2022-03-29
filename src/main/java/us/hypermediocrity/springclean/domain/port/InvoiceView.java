@@ -1,7 +1,5 @@
 package us.hypermediocrity.springclean.domain.port;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,8 +26,8 @@ public class InvoiceView {
     this.id = id;
   }
 
-  void invoiceDate(LocalDate date) {
-    this.date = date.format(DateTimeFormatter.ofPattern("yyyy MM dd"));
+  void invoiceDate(String date) {
+    this.date = date;
   }
 
   void addLineItem(LineItemView item) {

@@ -3,7 +3,7 @@ package us.hypermediocrity.springclean.application;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import us.hypermediocrity.springclean.domain.entity.Invoice;
+import us.hypermediocrity.springclean.domain.port.InvoiceView;
 import us.hypermediocrity.springclean.domain.usecase.MakePayment;
 import us.hypermediocrity.springclean.domain.usecase.ViewInvoice;
 
@@ -26,7 +26,7 @@ public class ApplicationImpl implements Application {
 
   @Override
   public InvoiceVO viewInvoice(String invoiceId) {
-    Invoice invoice = viewInvoice.execute(invoiceId);
+    InvoiceView invoice = viewInvoice.execute(invoiceId);
     return convertInvoice(invoice);
   }
 
@@ -35,7 +35,7 @@ public class ApplicationImpl implements Application {
     makePayment.execute(invoiceId, payment);
   }
 
-  private InvoiceVO convertInvoice(Invoice invoice) {
+  private InvoiceVO convertInvoice(InvoiceView invoice) {
     return modelMapper.map(invoice, InvoiceVO.class);
   }
 }

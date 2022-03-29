@@ -1,7 +1,7 @@
 package us.hypermediocrity.springclean.domain.usecase;
 
-import us.hypermediocrity.springclean.domain.entity.Invoice;
+import us.hypermediocrity.springclean.domain.port.InvoiceView;
 
 public interface ViewInvoice {
-  Invoice execute(String invoiceId);
+  InvoiceView execute(String invoiceId);
 }
