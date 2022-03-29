@@ -1,4 +1,4 @@
-package us.hypermediocrity.springclean.usecase;
+package us.hypermediocrity.springclean.domain.usecase;
 
 import us.hypermediocrity.springclean.application.PaymentVO;
 

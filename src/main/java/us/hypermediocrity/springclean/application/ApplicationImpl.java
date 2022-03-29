@@ -3,9 +3,9 @@ package us.hypermediocrity.springclean.application;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import us.hypermediocrity.springclean.domain.Invoice;
-import us.hypermediocrity.springclean.usecase.MakePayment;
-import us.hypermediocrity.springclean.usecase.ViewInvoice;
+import us.hypermediocrity.springclean.domain.entity.Invoice;
+import us.hypermediocrity.springclean.domain.usecase.MakePayment;
+import us.hypermediocrity.springclean.domain.usecase.ViewInvoice;
 
 /**
  * I don't like making this public. It's only public so that the SprintBoot
