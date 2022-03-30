@@ -1,9 +1,11 @@
 package us.hypermediocrity.springclean.domain.port;
 
+import java.util.Optional;
+
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 
 public interface InvoicePort {
 
-  Invoice getInvoice(String invoiceId);
+  Optional<Invoice> getInvoice(String invoiceId);
 
 }

@@ -46,7 +46,7 @@ class LineItemBuilder {
   }
 
   public LineItemView build() {
-    LineItemView item = new LineItemView();
+    var item = new LineItemView();
     item.productId(productId);
     item.quantity(quantity);
     item.unitPrice(exchangePort.convert(unitPrice, currency));

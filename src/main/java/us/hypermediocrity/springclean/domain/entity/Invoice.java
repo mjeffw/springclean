@@ -11,6 +11,7 @@ public class Invoice {
   private String customerId;
   private LocalDate date;
   private List<LineItem> lineItems = new ArrayList<>();
+  private Customer customer;
 
   public Invoice(String id) {
     this.id = id;
@@ -26,6 +27,10 @@ public class Invoice {
 
   public void customerId(String customerId) {
     this.customerId = customerId;
+  }
+
+  public void customer(Customer customer) {
+    this.customer = customer;
   }
 
   public LocalDate date() {
@@ -47,5 +52,17 @@ public class Invoice {
   public Money total() {
     return lineItems.stream().map(LineItem::totalPrice).reduce(Money::plus)
         .orElse(new Money(0.0, Currency.getInstance("USD")));
+  }
+
+  public Currency currency() {
+    return customer.currency();
+  }
+
+  public String customerName() {
+    return customer.name();
+  }
+
+  public String customerAccount() {
+    return customer.accountNumber();
   }
 }

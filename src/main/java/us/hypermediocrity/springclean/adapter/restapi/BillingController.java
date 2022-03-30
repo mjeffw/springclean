@@ -26,7 +26,7 @@ public class BillingController {
   }
 
   @GetMapping("/billpay/{id}/{payment}")
-  public void payBill(@PathVariable("id") String invoiceId, @RequestBody PaymentVO payment) {
+  public void payBill(@PathVariable("id") String invoiceId, @RequestBody PaymentVO payment) throws DomainException {
     app.payBill(invoiceId, payment);
   }
 

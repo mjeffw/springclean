@@ -31,14 +31,20 @@ public class SpringCleanApplication {
   CustomerPort customerPort;
 
   @Autowired
-  CurrencyExchangePort exhangePort;
+  CurrencyExchangePort exchangePort;
+
+  @Autowired
+  ViewInvoice viewInvoice;
+
+  @Autowired
+  MakePayment makePayment;
 
   // TODO I'd like to do this and still keep ApplicationImpl() package-private.
   // Alternatively, maybe move ApplicationImpl to some other package? Or use
   // Jigsaw modules?
   @Bean
   public Application getApplication() {
-    return new ApplicationImpl();
+    return new ApplicationImpl(viewInvoice, makePayment, invoicePort, customerPort);
   }
 
   @Bean
@@ -48,7 +54,7 @@ public class SpringCleanApplication {
 
   @Bean
   public ViewInvoice getViewInvoice() {
-    return new ViewInvoiceUsecase(invoicePort, customerPort, exhangePort);
+    return new ViewInvoiceUsecase(exchangePort);
   }
 
   @Bean

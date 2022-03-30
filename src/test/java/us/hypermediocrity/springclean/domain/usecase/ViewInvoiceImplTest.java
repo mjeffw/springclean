@@ -1,8 +1,6 @@
 package us.hypermediocrity.springclean.domain.usecase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.Currency;
@@ -23,7 +21,6 @@ import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
 import us.hypermediocrity.springclean.domain.port.LineItemView;
-import us.hypermediocrity.springclean.domain.usecase.exceptions.InvoiceNotFoundException;
 
 @ExtendWith(MockitoExtension.class)
 class ViewInvoiceImplTest {
@@ -46,23 +43,25 @@ class ViewInvoiceImplTest {
 
   private Invoice simpleInvoice;
   private Invoice multipleItemInvoice;
-  private Customer customer;
   private double conversion = 1.0;
+
+  private Customer customer;
 
   @BeforeEach
   public void setup() {
     simpleInvoice = new Invoice("simple");
     simpleInvoice.date(LocalDate.of(2022, 3, 31));
-    simpleInvoice.customerId("customer");
 
     customer = new Customer("customer");
     customer.accountNumber("account");
     customer.name("Acme Corp");
     customer.currency(Currency.getInstance("USD"));
 
+    simpleInvoice.customer(customer);
+
     multipleItemInvoice = new Invoice("multi");
     multipleItemInvoice.date(LocalDate.of(2022, 1, 1));
-    multipleItemInvoice.customerId("customer");
+    multipleItemInvoice.customer(customer);
 
     multipleItemInvoice.addLineItem(new LineItem("product-a", 4, new Money(39.95, Currency.getInstance("USD")))); // $159.80
     multipleItemInvoice.addLineItem(new LineItem("product-b", 1, new Money(2, Currency.getInstance("USD")))); // $2.00
@@ -70,18 +69,8 @@ class ViewInvoiceImplTest {
   }
 
   @Test
-  void viewUnknownInvoiceNumberShouldThrowException() throws Exception {
-    when(invoicePort.getInvoice("1234")).thenReturn(null);
-
-    assertThrows(InvoiceNotFoundException.class, () -> usecase.execute("1234"));
-  }
-
-  @Test
   void viewInvoiceShouldMapFieldsProperty() throws Exception {
-    when(invoicePort.getInvoice("simple")).thenReturn(simpleInvoice);
-    when(customerPort.getCustomer("customer")).thenReturn(customer);
-
-    var report = usecase.execute("simple");
+    var report = usecase.execute(simpleInvoice);
 
     assertEquals("Acme Corp", report.customerName());
     assertEquals("account", report.accountNumber());
@@ -93,10 +82,7 @@ class ViewInvoiceImplTest {
 
   @Test
   void viewInvoiceWithLineItemsShouldContainCorrectTotal() throws Exception {
-    when(invoicePort.getInvoice("multi")).thenReturn(multipleItemInvoice);
-    when(customerPort.getCustomer("customer")).thenReturn(customer);
-
-    var report = usecase.execute("multi");
+    var report = usecase.execute(multipleItemInvoice);
 
     assertEquals("Acme Corp", report.customerName());
     assertEquals("account", report.accountNumber());
@@ -132,10 +118,7 @@ class ViewInvoiceImplTest {
     // Set the exchange rate to 0.9 (USD -> EUR)
     conversion = 0.9;
 
-    when(invoicePort.getInvoice("multi")).thenReturn(multipleItemInvoice);
-    when(customerPort.getCustomer("customer")).thenReturn(customer);
-
-    var report = usecase.execute("multi");
+    var report = usecase.execute(multipleItemInvoice);
 
     assertEquals("Acme Corp", report.customerName());
     assertEquals("account", report.accountNumber());

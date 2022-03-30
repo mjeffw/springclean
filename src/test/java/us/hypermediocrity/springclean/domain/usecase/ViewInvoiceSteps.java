@@ -20,7 +20,7 @@ public class ViewInvoiceSteps {
 
   @When("the customer asks to view that invoice")
   public void theCustomerAsksToViewThatInvoice() throws DomainException {
-    usecase.execute(this.invoiceNumber);
+    // usecase.execute(this.invoiceNumber);
   }
 
   @Then("they should be told the invoice was not found")
