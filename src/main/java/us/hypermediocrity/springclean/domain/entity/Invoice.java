@@ -1,6 +1,5 @@
 package us.hypermediocrity.springclean.domain.entity;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,8 +40,12 @@ public class Invoice {
     return Collections.unmodifiableList(lineItems);
   }
 
+  public void addLineItem(LineItem item) {
+    this.lineItems.add(item);
+  }
+
   public Money total() {
     return lineItems.stream().map(LineItem::totalPrice).reduce(Money::plus)
-        .orElse(new Money(new BigInteger("0"), Currency.getInstance("USD")));
+        .orElse(new Money(0.0, Currency.getInstance("USD")));
   }
 }

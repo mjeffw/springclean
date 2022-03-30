@@ -33,15 +33,18 @@ public class InvoiceViewBuilder {
     InvoiceView view = new InvoiceView();
     view.customerName(customer.name());
     view.accountNumber(customer.accountNumber());
-
     view.invoiceId(invoice.id());
     view.invoiceDate(invoice.date().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
     for (LineItem lineItem : invoice.lineItems()) {
       view.addLineItem(
           LineItemBuilder.newInstance(exchangePort).productId(lineItem.productId()).quantity(lineItem.quantity())
               .unitPrice(lineItem.unitPrice()).totalPrice(lineItem.totalPrice()).currency(customer.currency()).build());
     }
-    view.invoiceTotal(invoice.total());
+
+    var total = exchangePort.convert(invoice.total(), customer.currency());
+    view.invoiceTotal(total);
+
     return view;
   }
 
