@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import us.hypermediocrity.springclean.domain.port.InvoiceView;
+import us.hypermediocrity.springclean.domain.usecase.DomainException;
 import us.hypermediocrity.springclean.domain.usecase.MakePayment;
 import us.hypermediocrity.springclean.domain.usecase.ViewInvoice;
 
@@ -25,7 +26,7 @@ public class ApplicationImpl implements Application {
   private ModelMapper modelMapper = new ModelMapper();
 
   @Override
-  public InvoiceVO viewInvoice(String invoiceId) {
+  public InvoiceVO viewInvoice(String invoiceId) throws DomainException {
     InvoiceView invoice = viewInvoice.execute(invoiceId);
     return convertInvoice(invoice);
   }

@@ -19,4 +19,9 @@ public class Money {
   public Money plus(Money toAdd) {
     return null;
   }
+
+  @Override
+  public String toString() {
+    return String.format("%s %s", currency.getCurrencyCode(), bigInteger.toString());
+  }
 }

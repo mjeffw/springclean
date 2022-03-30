@@ -1,7 +1,5 @@
 package us.hypermediocrity.springclean.domain.usecase;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import us.hypermediocrity.springclean.domain.entity.Customer;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
@@ -18,24 +16,34 @@ import us.hypermediocrity.springclean.domain.port.InvoiceViewBuilder;
  *
  */
 public class ViewInvoiceImpl implements ViewInvoice {
-  @Autowired
-  private InvoicePort invoicePort;
+  private final InvoicePort invoicePort;
+  private final CustomerPort customerPort;
+  private final CurrencyExchangePort exchangePort;
 
-  @Autowired
-  private CustomerPort customerPort;
-
-  @Autowired
-  CurrencyExchangePort exchangePort;
+  public ViewInvoiceImpl(InvoicePort invoicePort, CustomerPort customerPort, CurrencyExchangePort exchangePort) {
+    this.invoicePort = invoicePort;
+    this.customerPort = customerPort;
+    this.exchangePort = exchangePort;
+  }
 
   @Override
-  public InvoiceView execute(String invoiceId) {
+  public InvoiceView execute(String invoiceId) throws DomainException {
 
     Invoice invoice = invoicePort.getInvoice(invoiceId);
-    Customer customer = customerPort.getCustomer(invoice.getCustomerId());
+    if (invoice == null) {
+      throw new InvoiceNotFoundException(invoiceId);
+    }
 
+    Customer customer = customerPort.getCustomer(invoice.customerId());
+
+    // I could have done this mapping in the Application layer -- one of its
+    // responsibilities is to map values between the adapters and the domain.
+    //
+    // Where you do the mapping depends on whether the mapping is specified by
+    // business rules -- if that answer is 'yes', then the mapping properly belongs
+    // inside the usecase.
     InvoiceView report = InvoiceViewBuilder.newInstance(exchangePort).invoice(invoice).customer(customer).build();
 
     return report;
   }
-
 }

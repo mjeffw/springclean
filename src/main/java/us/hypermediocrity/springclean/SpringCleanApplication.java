@@ -1,5 +1,6 @@
 package us.hypermediocrity.springclean;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +24,15 @@ public class SpringCleanApplication {
     SpringApplication.run(SpringCleanApplication.class, args);
   }
 
+  @Autowired
+  InvoicePort invoicePort;
+
+  @Autowired
+  CustomerPort customerPort;
+
+  @Autowired
+  CurrencyExchangePort exhangePort;
+
   // TODO I'd like to do this and still keep ApplicationImpl() package-private.
   // Alternatively, maybe move ApplicationImpl to some other package? Or use
   // Jigsaw modules?
@@ -38,7 +48,7 @@ public class SpringCleanApplication {
 
   @Bean
   public ViewInvoice getViewInvoice() {
-    return new ViewInvoiceImpl();
+    return new ViewInvoiceImpl(invoicePort, customerPort, exhangePort);
   }
 
   @Bean

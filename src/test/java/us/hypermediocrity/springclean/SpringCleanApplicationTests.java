@@ -1,13 +1,13 @@
 package us.hypermediocrity.springclean;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+@Disabled
 @SpringBootTest
-class SpringcleanApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
+class SpringCleanApplicationTests {
+  @Test
+  void contextLoads() {
+  }
 }

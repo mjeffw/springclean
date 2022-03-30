@@ -35,7 +35,7 @@ public class InvoiceViewBuilder {
     view.accountNumber(customer.accountNumber());
 
     view.invoiceId(invoice.id());
-    view.invoiceDate(invoice.date().format(DateTimeFormatter.ofPattern("yyyy MM dd")));
+    view.invoiceDate(invoice.date().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
     for (LineItem lineItem : invoice.lineItems()) {
       view.addLineItem(
           LineItemBuilder.newInstance(exchangePort).productId(lineItem.productId()).quantity(lineItem.quantity())
