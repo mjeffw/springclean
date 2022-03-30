@@ -16,7 +16,7 @@ import us.hypermediocrity.springclean.domain.port.InvoicePort;
 import us.hypermediocrity.springclean.domain.usecase.MakePayment;
 import us.hypermediocrity.springclean.domain.usecase.MakePaymentUsecase;
 import us.hypermediocrity.springclean.domain.usecase.ViewInvoice;
-import us.hypermediocrity.springclean.domain.usecase.ViewInvoiceImpl;
+import us.hypermediocrity.springclean.domain.usecase.ViewInvoiceUsecase;
 
 @SpringBootApplication
 public class SpringCleanApplication {
@@ -48,7 +48,7 @@ public class SpringCleanApplication {
 
   @Bean
   public ViewInvoice getViewInvoice() {
-    return new ViewInvoiceImpl(invoicePort, customerPort, exhangePort);
+    return new ViewInvoiceUsecase(invoicePort, customerPort, exhangePort);
   }
 
   @Bean

@@ -3,11 +3,12 @@ package us.hypermediocrity.springclean.domain.usecase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import us.hypermediocrity.springclean.domain.usecase.exceptions.DomainException;
 
 public class ViewInvoiceSteps {
   private String invoiceNumber;
 
-  private ViewInvoice usecase = new ViewInvoiceImpl();
+  private ViewInvoice usecase = new ViewInvoiceUsecase();
 
   @Given("invoice number {string} does not exist")
   public void invoiceNumberDoesNotExist(String int1) {

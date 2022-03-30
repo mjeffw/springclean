@@ -7,6 +7,8 @@ import us.hypermediocrity.springclean.domain.port.CustomerPort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
 import us.hypermediocrity.springclean.domain.port.InvoiceView;
 import us.hypermediocrity.springclean.domain.port.InvoiceViewBuilder;
+import us.hypermediocrity.springclean.domain.usecase.exceptions.DomainException;
+import us.hypermediocrity.springclean.domain.usecase.exceptions.InvoiceNotFoundException;
 
 /**
  * Another class that is only public because of the configuration in
@@ -15,12 +17,12 @@ import us.hypermediocrity.springclean.domain.port.InvoiceViewBuilder;
  * @author jw9615
  *
  */
-public class ViewInvoiceImpl implements ViewInvoice {
+public class ViewInvoiceUsecase implements ViewInvoice {
   private final InvoicePort invoicePort;
   private final CustomerPort customerPort;
   private final CurrencyExchangePort exchangePort;
 
-  public ViewInvoiceImpl(InvoicePort invoicePort, CustomerPort customerPort, CurrencyExchangePort exchangePort) {
+  public ViewInvoiceUsecase(InvoicePort invoicePort, CustomerPort customerPort, CurrencyExchangePort exchangePort) {
     this.invoicePort = invoicePort;
     this.customerPort = customerPort;
     this.exchangePort = exchangePort;

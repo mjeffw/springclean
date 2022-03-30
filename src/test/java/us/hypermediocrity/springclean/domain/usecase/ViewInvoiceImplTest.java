@@ -19,6 +19,7 @@ import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
+import us.hypermediocrity.springclean.domain.usecase.exceptions.InvoiceNotFoundException;
 
 @ExtendWith(MockitoExtension.class)
 class ViewInvoiceImplTest {
@@ -32,7 +33,7 @@ class ViewInvoiceImplTest {
   CurrencyExchangePort exchangePort;
 
   @InjectMocks
-  ViewInvoiceImpl usecase;
+  ViewInvoiceUsecase usecase;
 
   private Invoice simpleInvoice;
   private Customer customer;
