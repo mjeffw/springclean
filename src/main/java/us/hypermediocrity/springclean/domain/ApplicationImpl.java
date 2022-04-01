@@ -1,4 +1,7 @@
-package us.hypermediocrity.springclean.application;
+package us.hypermediocrity.springclean.domain;
+
+import java.util.Currency;
+import java.util.Properties;
 
 import org.modelmapper.ModelMapper;
 
@@ -6,13 +9,13 @@ import us.hypermediocrity.springclean.domain.entity.FundTransfer;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.entity.Money;
 import us.hypermediocrity.springclean.domain.entity.Payment;
+import us.hypermediocrity.springclean.domain.entity.PaymentResult;
+import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
 import us.hypermediocrity.springclean.domain.port.InvoiceView;
 import us.hypermediocrity.springclean.domain.usecase.MakePayment;
 import us.hypermediocrity.springclean.domain.usecase.ViewInvoice;
-import us.hypermediocrity.springclean.domain.usecase.exceptions.DomainException;
-import us.hypermediocrity.springclean.domain.usecase.exceptions.InvoiceNotFoundException;
 
 /**
  * I don't like making this public. It's only public so that the SprintBoot
@@ -26,13 +29,10 @@ public class ApplicationImpl implements Application {
   private ModelMapper modelMapper = new ModelMapper();
   private InvoicePort invoicePort;
   private CustomerPort customerPort;
-  private ViewInvoice viewInvoice;
-  private MakePayment makePayment;
+  private CurrencyExchangePort exchangePort;
 
-  public ApplicationImpl(ViewInvoice viewInvoice, MakePayment makePayment, InvoicePort invoicePort,
-      CustomerPort customerPort) {
-    this.viewInvoice = viewInvoice;
-    this.makePayment = makePayment;
+  public ApplicationImpl(CurrencyExchangePort exchangePort, InvoicePort invoicePort, CustomerPort customerPort) {
+    this.exchangePort = exchangePort;
     this.invoicePort = invoicePort;
     this.customerPort = customerPort;
   }
@@ -41,16 +41,23 @@ public class ApplicationImpl implements Application {
   public InvoiceVO viewInvoice(String invoiceId) throws DomainException {
     Invoice invoice = getInvoice(invoiceId);
 
-    InvoiceView report = viewInvoice.execute(invoice);
+    InvoiceView report = new ViewInvoice(exchangePort).execute(invoice);
     return convertInvoice(report);
   }
 
   @Override
-  public void payBill(String invoiceId, PaymentVO paymentVO) throws DomainException {
+  public PaymentResultVO payBill(String invoiceId, double amount, String currencyCode, String paymentType,
+      Properties paymentDetails) throws DomainException {
     Invoice invoice = getInvoice(invoiceId);
-    Payment payment = new Payment(new Money(paymentVO.amount(), invoice.currency()), create(paymentVO));
+    Payment payment = new Payment(new Money(amount, Currency.getInstance(currencyCode)),
+        create(paymentType, paymentDetails));
 
-    makePayment.execute(invoice, payment);
+    var result = new MakePayment().execute(invoice, payment);
+    return convertPaymentResult(result);
+  }
+
+  private PaymentResultVO convertPaymentResult(PaymentResult result) {
+    return modelMapper.map(result, PaymentResultVO.class);
   }
 
   private Invoice getInvoice(String invoiceId) throws DomainException {
@@ -63,8 +70,8 @@ public class ApplicationImpl implements Application {
     return modelMapper.map(invoice, InvoiceVO.class);
   }
 
-  private FundTransfer create(PaymentVO payment) {
-    FundTransfer.Type type = FundTransfer.Type.valueOf(payment.type());
-    return new FundTransfer(type, payment.properties());
+  private FundTransfer create(String paymentType, Properties paymentDetails) {
+    FundTransfer.Type type = FundTransfer.Type.valueOf(paymentType);
+    return new FundTransfer(type, paymentDetails);
   }
 }

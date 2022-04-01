@@ -3,6 +3,7 @@ package us.hypermediocrity.springclean.domain.entity;
 import java.util.Currency;
 
 public class Money {
+  public static final Money ZERO = new Money(0.0, Currency.getInstance("USD"));
   public final double value;
   public final Currency currency;
 
@@ -35,5 +36,13 @@ public class Money {
       return false;
     var money = (Money) obj;
     return (this.value == money.value && this.currency == money.currency);
+  }
+
+  public boolean greaterThan(Money other) {
+    if (other.value == 0 || this.value == 0 || other.currency == this.currency) {
+      return this.value > other.value;
+    }
+
+    throw new IllegalArgumentException("Must be the same currency.");
   }
 }

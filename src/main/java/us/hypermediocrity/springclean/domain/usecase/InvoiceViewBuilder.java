@@ -1,11 +1,13 @@
-package us.hypermediocrity.springclean.domain.port;
+package us.hypermediocrity.springclean.domain.usecase;
 
 import java.time.format.DateTimeFormatter;
 
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.entity.LineItem;
+import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
+import us.hypermediocrity.springclean.domain.port.InvoiceView;
 
-public class InvoiceViewBuilder {
+class InvoiceViewBuilder {
   public static InvoiceViewBuilder newInstance(CurrencyExchangePort exchangePort) {
     return new InvoiceViewBuilder(exchangePort);
   }

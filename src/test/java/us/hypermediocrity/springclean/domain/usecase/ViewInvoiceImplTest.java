@@ -2,7 +2,6 @@ package us.hypermediocrity.springclean.domain.usecase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDate;
 import java.util.Currency;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,9 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import us.hypermediocrity.springclean.domain.entity.Customer;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
-import us.hypermediocrity.springclean.domain.entity.LineItem;
 import us.hypermediocrity.springclean.domain.entity.Money;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
@@ -39,33 +36,16 @@ class ViewInvoiceImplTest {
   };
 
   @InjectMocks
-  ViewInvoiceUsecase usecase;
+  ViewInvoice usecase;
 
   private Invoice simpleInvoice;
   private Invoice multipleItemInvoice;
   private double conversion = 1.0;
 
-  private Customer customer;
-
   @BeforeEach
   public void setup() {
-    simpleInvoice = new Invoice("simple");
-    simpleInvoice.date(LocalDate.of(2022, 3, 31));
-
-    customer = new Customer("customer");
-    customer.accountNumber("account");
-    customer.name("Acme Corp");
-    customer.currency(Currency.getInstance("USD"));
-
-    simpleInvoice.customer(customer);
-
-    multipleItemInvoice = new Invoice("multi");
-    multipleItemInvoice.date(LocalDate.of(2022, 1, 1));
-    multipleItemInvoice.customer(customer);
-
-    multipleItemInvoice.addLineItem(new LineItem("product-a", 4, new Money(39.95, Currency.getInstance("USD")))); // $159.80
-    multipleItemInvoice.addLineItem(new LineItem("product-b", 1, new Money(2, Currency.getInstance("USD")))); // $2.00
-    multipleItemInvoice.addLineItem(new LineItem("product-c", 2, new Money(17.50, Currency.getInstance("USD")))); // $35.00
+    simpleInvoice = TestFixtures.invoiceSimple();
+    multipleItemInvoice = TestFixtures.invoiceMultiItem();
   }
 
   @Test
@@ -95,25 +75,25 @@ class ViewInvoiceImplTest {
     assertEquals("product-a", lineItemView.productId());
     assertEquals(4, lineItemView.quantity());
     assertEquals("USD 39.95", lineItemView.unitPrice());
-    assertEquals("USD 159.80", lineItemView.totalPrice());
+    assertEquals("USD 159.80", lineItemView.lineItemTotal());
 
     lineItemView = report.lineItems().get(1);
     assertEquals("product-b", lineItemView.productId());
     assertEquals(1, lineItemView.quantity());
     assertEquals("USD 2.00", lineItemView.unitPrice());
-    assertEquals("USD 2.00", lineItemView.totalPrice());
+    assertEquals("USD 2.00", lineItemView.lineItemTotal());
 
     lineItemView = report.lineItems().get(2);
     assertEquals("product-c", lineItemView.productId());
     assertEquals(2, lineItemView.quantity());
     assertEquals("USD 17.50", lineItemView.unitPrice());
-    assertEquals("USD 35.00", lineItemView.totalPrice());
+    assertEquals("USD 35.00", lineItemView.lineItemTotal());
   }
 
   @Test
   void viewInvoiceWithSomeOtherCurrency() throws Exception {
     // Set the customer currency to the Euro ("EUR").
-    customer.currency(Currency.getInstance("EUR"));
+    multipleItemInvoice.customer().currency(Currency.getInstance("EUR"));
 
     // Set the exchange rate to 0.9 (USD -> EUR)
     conversion = 0.9;
@@ -131,18 +111,18 @@ class ViewInvoiceImplTest {
     assertEquals("product-a", lineItemView.productId());
     assertEquals(4, lineItemView.quantity());
     assertEquals("EUR 35.96", lineItemView.unitPrice());
-    assertEquals("EUR 143.82", lineItemView.totalPrice());
+    assertEquals("EUR 143.82", lineItemView.lineItemTotal());
 
     lineItemView = report.lineItems().get(1);
     assertEquals("product-b", lineItemView.productId());
     assertEquals(1, lineItemView.quantity());
     assertEquals("EUR 1.80", lineItemView.unitPrice());
-    assertEquals("EUR 1.80", lineItemView.totalPrice());
+    assertEquals("EUR 1.80", lineItemView.lineItemTotal());
 
     lineItemView = report.lineItems().get(2);
     assertEquals("product-c", lineItemView.productId());
     assertEquals(2, lineItemView.quantity());
     assertEquals("EUR 15.75", lineItemView.unitPrice());
-    assertEquals("EUR 31.50", lineItemView.totalPrice());
+    assertEquals("EUR 31.50", lineItemView.lineItemTotal());
   }
 }

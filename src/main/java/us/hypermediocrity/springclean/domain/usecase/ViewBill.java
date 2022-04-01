@@ -1,5 +1,7 @@
 package us.hypermediocrity.springclean.domain.usecase;
 
-public interface ViewBill {
-
+public class ViewBill {
+  public void execute() {
+    // Implement me!
+  }
 }

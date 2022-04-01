@@ -33,6 +33,10 @@ public class Invoice {
     this.customer = customer;
   }
 
+  public Customer customer() {
+    return customer;
+  }
+
   public LocalDate date() {
     return date;
   }

@@ -14,27 +14,27 @@ public class InvoiceView {
   private List<LineItemView> items = new ArrayList<>();
   private String total;
 
-  void customerName(String name) {
+  public void customerName(String name) {
     this.customerName = name;
   }
 
-  void accountNumber(String accountNumber) {
+  public void accountNumber(String accountNumber) {
     this.accountNumber = accountNumber;
   }
 
-  void invoiceId(String id) {
+  public void invoiceId(String id) {
     this.id = id;
   }
 
-  void invoiceDate(String date) {
+  public void invoiceDate(String date) {
     this.date = date;
   }
 
-  void addLineItem(LineItemView item) {
+  public void addLineItem(LineItemView item) {
     items.add(item);
   }
 
-  void invoiceTotal(Money total) {
+  public void invoiceTotal(Money total) {
     this.total = total.toString();
   }
 

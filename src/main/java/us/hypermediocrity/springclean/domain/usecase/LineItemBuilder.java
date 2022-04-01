@@ -1,8 +1,10 @@
-package us.hypermediocrity.springclean.domain.port;
+package us.hypermediocrity.springclean.domain.usecase;
 
 import java.util.Currency;
 
 import us.hypermediocrity.springclean.domain.entity.Money;
+import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
+import us.hypermediocrity.springclean.domain.port.LineItemView;
 
 class LineItemBuilder {
   public static LineItemBuilder newInstance(CurrencyExchangePort exchangePort) {
