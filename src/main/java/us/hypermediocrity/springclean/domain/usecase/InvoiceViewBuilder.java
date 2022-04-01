@@ -1,18 +1,18 @@
-package us.hypermediocrity.springclean.domain.port;
+package us.hypermediocrity.springclean.domain.usecase;
 
 import java.time.format.DateTimeFormatter;
 
-import us.hypermediocrity.springclean.domain.entity.Customer;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.entity.LineItem;
+import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
+import us.hypermediocrity.springclean.domain.port.InvoiceView;
 
-public class InvoiceViewBuilder {
+class InvoiceViewBuilder {
   public static InvoiceViewBuilder newInstance(CurrencyExchangePort exchangePort) {
     return new InvoiceViewBuilder(exchangePort);
   }
 
   private Invoice invoice;
-  private Customer customer;
   private CurrencyExchangePort exchangePort;
 
   public InvoiceViewBuilder(CurrencyExchangePort exchangePort) {
@@ -24,24 +24,22 @@ public class InvoiceViewBuilder {
     return this;
   }
 
-  public InvoiceViewBuilder customer(Customer customer) {
-    this.customer = customer;
-    return this;
-  }
-
   public InvoiceView build() {
-    InvoiceView view = new InvoiceView();
-    view.customerName(customer.name());
-    view.accountNumber(customer.accountNumber());
-
+    var view = new InvoiceView();
+    view.customerName(invoice.customerName());
+    view.accountNumber(invoice.customerAccount());
     view.invoiceId(invoice.id());
-    view.invoiceDate(invoice.date().format(DateTimeFormatter.ofPattern("yyyy MM dd")));
+    view.invoiceDate(invoice.date().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
     for (LineItem lineItem : invoice.lineItems()) {
       view.addLineItem(
           LineItemBuilder.newInstance(exchangePort).productId(lineItem.productId()).quantity(lineItem.quantity())
-              .unitPrice(lineItem.unitPrice()).totalPrice(lineItem.totalPrice()).currency(customer.currency()).build());
+              .unitPrice(lineItem.unitPrice()).totalPrice(lineItem.totalPrice()).currency(invoice.currency()).build());
     }
-    view.invoiceTotal(invoice.total());
+
+    var total = exchangePort.convert(invoice.total(), invoice.currency());
+    view.invoiceTotal(total);
+
     return view;
   }
 

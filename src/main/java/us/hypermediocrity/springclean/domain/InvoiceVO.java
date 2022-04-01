@@ -1,4 +1,4 @@
-package us.hypermediocrity.springclean.application;
+package us.hypermediocrity.springclean.domain;
 
 /**
  * Value object that represents an Invoice

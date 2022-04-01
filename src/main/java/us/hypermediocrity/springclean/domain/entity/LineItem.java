@@ -5,6 +5,12 @@ public class LineItem {
   private int quantity;
   private Money unitPrice;
 
+  public LineItem(String productId, int quantity, Money unitPrice) {
+    this.productId = productId;
+    this.quantity = quantity;
+    this.unitPrice = unitPrice;
+  }
+
   public String productId() {
     return productId;
   }

@@ -13,7 +13,7 @@ public class LineItemView {
     return productId;
   }
 
-  void productId(String productId) {
+  public void productId(String productId) {
     this.productId = productId;
   }
 
@@ -21,7 +21,7 @@ public class LineItemView {
     return quantity;
   }
 
-  void quantity(int quantity) {
+  public void quantity(int quantity) {
     this.quantity = quantity;
   }
 
@@ -29,15 +29,15 @@ public class LineItemView {
     return unitPrice;
   }
 
-  void unitPrice(Money unitPrice) {
+  public void unitPrice(Money unitPrice) {
     this.unitPrice = unitPrice.toString();
   }
 
-  public String totalPrice() {
+  public String lineItemTotal() {
     return totalPrice;
   }
 
-  void totalPrice(Money totalPrice) {
+  public void totalPrice(Money totalPrice) {
     this.totalPrice = totalPrice.toString();
   }
 }
