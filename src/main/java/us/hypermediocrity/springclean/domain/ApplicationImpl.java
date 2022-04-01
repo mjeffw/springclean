@@ -14,6 +14,7 @@ import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
 import us.hypermediocrity.springclean.domain.port.InvoiceView;
+import us.hypermediocrity.springclean.domain.port.MoneyTransferPort;
 import us.hypermediocrity.springclean.domain.usecase.MakePayment;
 import us.hypermediocrity.springclean.domain.usecase.ViewInvoice;
 
@@ -30,11 +31,24 @@ public class ApplicationImpl implements Application {
   private InvoicePort invoicePort;
   private CustomerPort customerPort;
   private CurrencyExchangePort exchangePort;
+  private MoneyTransferPort transferPort;
 
-  public ApplicationImpl(CurrencyExchangePort exchangePort, InvoicePort invoicePort, CustomerPort customerPort) {
+  /**
+   * I do worry about this parameter list growing unbounded as we add use-cases
+   * and features. Could address that by splitting into multiple Application
+   * interfaces and implementations based on grouping related use-cases.
+   * 
+   * @param exchangePort
+   * @param invoicePort
+   * @param customerPort
+   * @param transferPort
+   */
+  public ApplicationImpl(CurrencyExchangePort exchangePort, InvoicePort invoicePort, CustomerPort customerPort,
+      MoneyTransferPort transferPort) {
     this.exchangePort = exchangePort;
     this.invoicePort = invoicePort;
     this.customerPort = customerPort;
+    this.transferPort = transferPort;
   }
 
   @Override
@@ -52,7 +66,7 @@ public class ApplicationImpl implements Application {
     Payment payment = new Payment(new Money(amount, Currency.getInstance(currencyCode)),
         create(paymentType, paymentDetails));
 
-    var result = new MakePayment().execute(invoice, payment);
+    var result = new MakePayment(exchangePort, transferPort).execute(invoice, payment);
     return convertPaymentResult(result);
   }
 

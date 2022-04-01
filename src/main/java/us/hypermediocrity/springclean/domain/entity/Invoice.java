@@ -54,8 +54,7 @@ public class Invoice {
   }
 
   public Money total() {
-    return lineItems.stream().map(LineItem::totalPrice).reduce(Money::plus)
-        .orElse(new Money(0.0, Currency.getInstance("USD")));
+    return lineItems.stream().map(LineItem::totalPrice).reduce(Money::plus).orElse(Money.ZERO);
   }
 
   public Currency currency() {

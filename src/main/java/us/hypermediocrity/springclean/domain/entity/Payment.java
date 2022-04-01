@@ -8,4 +8,12 @@ public class Payment {
     this.amount = amount;
     this.transfer = transfer;
   }
+
+  public Money amount() {
+    return amount;
+  }
+
+  public FundTransfer transfer() {
+    return transfer;
+  }
 }

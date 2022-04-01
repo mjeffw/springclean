@@ -3,7 +3,7 @@ package us.hypermediocrity.springclean.domain.entity;
 public class PaymentResult {
 
   public static enum Reason {
-    AMOUNT_DUE_IS_ZERO, PAID_IN_FULL
+    AMOUNT_DUE_IS_ZERO, PAID_IN_FULL, NOT_PAID_IN_FULL, OVERPAID, TRANSACTION_FAILED
   }
 
   private Money amountPaid;
