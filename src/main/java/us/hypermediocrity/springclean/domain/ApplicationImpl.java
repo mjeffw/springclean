@@ -10,6 +10,8 @@ import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.entity.Money;
 import us.hypermediocrity.springclean.domain.entity.Payment;
 import us.hypermediocrity.springclean.domain.entity.PaymentResult;
+import us.hypermediocrity.springclean.domain.exceptions.DomainException;
+import us.hypermediocrity.springclean.domain.exceptions.InvoiceNotFoundException;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
@@ -28,10 +30,10 @@ import us.hypermediocrity.springclean.domain.usecase.ViewInvoice;
  */
 public class ApplicationImpl implements Application {
   private ModelMapper modelMapper = new ModelMapper();
-  private InvoicePort invoicePort;
   private CustomerPort customerPort;
   private CurrencyExchangePort exchangePort;
   private MoneyTransferPort transferPort;
+  private InvoicePort invoicePort;
 
   /**
    * I do worry about this parameter list growing unbounded as we add use-cases
@@ -39,6 +41,7 @@ public class ApplicationImpl implements Application {
    * interfaces and implementations based on grouping related use-cases.
    * 
    * @param exchangePort
+   * @param invoicePort
    * @param invoicePort
    * @param customerPort
    * @param transferPort

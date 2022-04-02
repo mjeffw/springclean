@@ -1,13 +1,15 @@
 package us.hypermediocrity.springclean.domain.usecase;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import us.hypermediocrity.springclean.domain.DomainException;
+import us.hypermediocrity.springclean.domain.exceptions.DomainException;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 
+@SpringBootTest
 public class ViewInvoiceSteps {
   private String invoiceNumber;
 

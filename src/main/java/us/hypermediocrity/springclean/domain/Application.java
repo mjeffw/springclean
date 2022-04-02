@@ -2,6 +2,8 @@ package us.hypermediocrity.springclean.domain;
 
 import java.util.Properties;
 
+import us.hypermediocrity.springclean.domain.exceptions.DomainException;
+
 public interface Application {
   InvoiceVO viewInvoice(String invoiceId) throws DomainException;
 

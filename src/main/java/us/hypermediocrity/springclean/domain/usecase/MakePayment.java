@@ -1,11 +1,11 @@
 package us.hypermediocrity.springclean.domain.usecase;
 
-import us.hypermediocrity.springclean.domain.DomainException;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.entity.Money;
 import us.hypermediocrity.springclean.domain.entity.Payment;
 import us.hypermediocrity.springclean.domain.entity.PaymentResult;
 import us.hypermediocrity.springclean.domain.entity.PaymentResult.Reason;
+import us.hypermediocrity.springclean.domain.exceptions.DomainException;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.MoneyTransferPort;
 import us.hypermediocrity.springclean.domain.port.TransferResponse;

@@ -1,4 +1,3 @@
-@Ignore
 Feature: View Invoice
   Scenario: Unknown invoice number
     Given invoice number "1234" does not exist
