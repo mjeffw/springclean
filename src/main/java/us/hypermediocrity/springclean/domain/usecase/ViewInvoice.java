@@ -1,9 +1,9 @@
 package us.hypermediocrity.springclean.domain.usecase;
 
 import us.hypermediocrity.springclean.domain.DomainException;
-import us.hypermediocrity.springclean.domain.InvoiceView;
-import us.hypermediocrity.springclean.domain.InvoiceViewBuilder;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
+import us.hypermediocrity.springclean.domain.mapping.InvoiceView;
+import us.hypermediocrity.springclean.domain.mapping.InvoiceViewBuilder;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 
 /**

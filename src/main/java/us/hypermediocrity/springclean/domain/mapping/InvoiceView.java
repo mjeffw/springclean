@@ -1,4 +1,4 @@
-package us.hypermediocrity.springclean.domain;
+package us.hypermediocrity.springclean.domain.mapping;
 
 import java.util.ArrayList;
 import java.util.Collections;
