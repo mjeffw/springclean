@@ -15,16 +15,16 @@ class InvoiceViewBuilder {
   private Invoice invoice;
   private CurrencyExchangePort exchangePort;
 
-  public InvoiceViewBuilder(CurrencyExchangePort exchangePort) {
+  InvoiceViewBuilder(CurrencyExchangePort exchangePort) {
     this.exchangePort = exchangePort;
   }
 
-  public InvoiceViewBuilder invoice(Invoice invoice) {
+  InvoiceViewBuilder invoice(Invoice invoice) {
     this.invoice = invoice;
     return this;
   }
 
-  public InvoiceView build() {
+  InvoiceView build() {
     var view = new InvoiceView();
     view.customerName(invoice.customerName());
     view.accountNumber(invoice.customerAccount());
@@ -42,5 +42,4 @@ class InvoiceViewBuilder {
 
     return view;
   }
-
 }
