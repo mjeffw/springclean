@@ -1,13 +1,13 @@
-package us.hypermediocrity.springclean.domain.usecase;
+package us.hypermediocrity.springclean.domain;
 
 import java.util.Currency;
 
 import us.hypermediocrity.springclean.domain.entity.Money;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 
-class LineItemBuilder {
-  static LineItemBuilder newInstance(CurrencyExchangePort exchangePort) {
-    return new LineItemBuilder(exchangePort);
+class LineItemViewBuilder {
+  static LineItemViewBuilder newInstance(CurrencyExchangePort exchangePort) {
+    return new LineItemViewBuilder(exchangePort);
   }
 
   private String productId;
@@ -17,31 +17,31 @@ class LineItemBuilder {
   private Currency currency;
   private CurrencyExchangePort exchangePort;
 
-  LineItemBuilder(CurrencyExchangePort exchangePort) {
+  LineItemViewBuilder(CurrencyExchangePort exchangePort) {
     this.exchangePort = exchangePort;
   }
 
-  LineItemBuilder productId(String productId) {
+  LineItemViewBuilder productId(String productId) {
     this.productId = productId;
     return this;
   }
 
-  LineItemBuilder quantity(int quantity) {
+  LineItemViewBuilder quantity(int quantity) {
     this.quantity = quantity;
     return this;
   }
 
-  LineItemBuilder unitPrice(Money unitPrice) {
+  LineItemViewBuilder unitPrice(Money unitPrice) {
     this.unitPrice = unitPrice;
     return this;
   }
 
-  LineItemBuilder totalPrice(Money totalPrice) {
+  LineItemViewBuilder totalPrice(Money totalPrice) {
     this.totalPrice = totalPrice;
     return this;
   }
 
-  LineItemBuilder currency(Currency currency) {
+  LineItemViewBuilder currency(Currency currency) {
     this.currency = currency;
     return this;
   }

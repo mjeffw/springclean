@@ -1,6 +1,8 @@
 package us.hypermediocrity.springclean.domain.usecase;
 
 import us.hypermediocrity.springclean.domain.DomainException;
+import us.hypermediocrity.springclean.domain.InvoiceView;
+import us.hypermediocrity.springclean.domain.InvoiceViewBuilder;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 
@@ -25,7 +27,7 @@ public class ViewInvoice {
     //
     // Where you do the mapping depends on whether the mapping is specified by
     // business rules -- if that answer is 'yes', then the mapping properly belongs
-    // inside the usecase.
+    // inside the use-case.
     var report = InvoiceViewBuilder.newInstance(exchangePort).invoice(invoice).build();
 
     return report;

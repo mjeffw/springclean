@@ -1,4 +1,4 @@
-package us.hypermediocrity.springclean.domain.usecase;
+package us.hypermediocrity.springclean.domain;
 
 import java.time.format.DateTimeFormatter;
 
@@ -6,7 +6,7 @@ import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.entity.LineItem;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 
-class InvoiceViewBuilder {
+public class InvoiceViewBuilder {
   public static InvoiceViewBuilder newInstance(CurrencyExchangePort exchangePort) {
     return new InvoiceViewBuilder(exchangePort);
   }
@@ -18,12 +18,12 @@ class InvoiceViewBuilder {
     this.exchangePort = exchangePort;
   }
 
-  InvoiceViewBuilder invoice(Invoice invoice) {
+  public InvoiceViewBuilder invoice(Invoice invoice) {
     this.invoice = invoice;
     return this;
   }
 
-  InvoiceView build() {
+  public InvoiceView build() {
     var view = new InvoiceView();
     view.customerName(invoice.customerName());
     view.accountNumber(invoice.customerAccount());
@@ -32,7 +32,7 @@ class InvoiceViewBuilder {
 
     for (LineItem lineItem : invoice.lineItems()) {
       view.addLineItem(
-          LineItemBuilder.newInstance(exchangePort).productId(lineItem.productId()).quantity(lineItem.quantity())
+          LineItemViewBuilder.newInstance(exchangePort).productId(lineItem.productId()).quantity(lineItem.quantity())
               .unitPrice(lineItem.unitPrice()).totalPrice(lineItem.totalPrice()).currency(invoice.currency()).build());
     }
 
