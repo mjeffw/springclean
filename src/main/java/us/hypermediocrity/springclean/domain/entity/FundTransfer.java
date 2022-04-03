@@ -7,6 +7,7 @@ public class FundTransfer {
     CreditCard, PayPal, BankTransfer
   }
 
+  @SuppressWarnings("unused")
   private Type type;
 
   /**
@@ -17,6 +18,7 @@ public class FundTransfer {
    * Security Code, Expiry Date; BankTransfer requires Name, Account Number,
    * Routing Number; etc...
    */
+  @SuppressWarnings("unused")
   private Properties properties;
 
   public FundTransfer(Type type, Properties properties) {
