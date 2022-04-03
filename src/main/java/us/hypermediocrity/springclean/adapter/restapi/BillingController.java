@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import us.hypermediocrity.springclean.domain.Application;
+import us.hypermediocrity.springclean.domain.DomainException;
+import us.hypermediocrity.springclean.domain.InvoiceNotFoundException;
 import us.hypermediocrity.springclean.domain.InvoiceVO;
-import us.hypermediocrity.springclean.domain.usecase.DomainException;
-import us.hypermediocrity.springclean.domain.usecase.InvoiceNotFoundException;
 
 @RestController
 public class BillingController {

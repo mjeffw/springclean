@@ -1,5 +1,6 @@
 package us.hypermediocrity.springclean.domain.usecase;
 
+import us.hypermediocrity.springclean.domain.DomainException;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.entity.Money;
 import us.hypermediocrity.springclean.domain.entity.Payment;
