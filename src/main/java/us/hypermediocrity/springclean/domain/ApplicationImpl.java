@@ -13,10 +13,10 @@ import us.hypermediocrity.springclean.domain.entity.PaymentResult;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
-import us.hypermediocrity.springclean.domain.port.InvoiceView;
 import us.hypermediocrity.springclean.domain.port.MoneyTransferPort;
 import us.hypermediocrity.springclean.domain.usecase.DomainException;
 import us.hypermediocrity.springclean.domain.usecase.InvoiceNotFoundException;
+import us.hypermediocrity.springclean.domain.usecase.InvoiceView;
 import us.hypermediocrity.springclean.domain.usecase.MakePayment;
 import us.hypermediocrity.springclean.domain.usecase.ViewInvoice;
 

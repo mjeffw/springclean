@@ -1,4 +1,4 @@
-package us.hypermediocrity.springclean.domain.port;
+package us.hypermediocrity.springclean.domain.usecase;
 
 import us.hypermediocrity.springclean.domain.entity.Money;
 

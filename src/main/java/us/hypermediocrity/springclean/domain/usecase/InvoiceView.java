@@ -1,4 +1,4 @@
-package us.hypermediocrity.springclean.domain.port;
+package us.hypermediocrity.springclean.domain.usecase;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -2,7 +2,6 @@ package us.hypermediocrity.springclean.domain.usecase;
 
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
-import us.hypermediocrity.springclean.domain.port.InvoiceView;
 
 /**
  * Another class that is only public because of the configuration in

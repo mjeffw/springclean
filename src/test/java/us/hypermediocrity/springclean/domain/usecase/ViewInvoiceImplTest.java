@@ -17,7 +17,6 @@ import us.hypermediocrity.springclean.domain.entity.Money;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
-import us.hypermediocrity.springclean.domain.port.LineItemView;
 
 @ExtendWith(MockitoExtension.class)
 class ViewInvoiceImplTest {
