@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 import us.hypermediocrity.springclean.adapter.bankaccount.BankAccountAdapter;
 import us.hypermediocrity.springclean.adapter.creditcard.CreditCardAdapter;
-import us.hypermediocrity.springclean.adapter.currencyconvert.CurrencyConverterAdapter;
+import us.hypermediocrity.springclean.adapter.currencyexchange.CurrencyConverterAdapter;
 import us.hypermediocrity.springclean.adapter.customer.CustomerPortAdapter;
 import us.hypermediocrity.springclean.adapter.invoice.InvoicePortAdapter;
 import us.hypermediocrity.springclean.adapter.paypal.PayPalAdapter;

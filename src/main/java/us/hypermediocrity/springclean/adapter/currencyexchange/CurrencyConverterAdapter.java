@@ -1,4 +1,4 @@
-package us.hypermediocrity.springclean.adapter.currencyconvert;
+package us.hypermediocrity.springclean.adapter.currencyexchange;
 
 import java.util.Currency;
 
