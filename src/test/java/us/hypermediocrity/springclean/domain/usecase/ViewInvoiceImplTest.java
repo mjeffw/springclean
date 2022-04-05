@@ -14,10 +14,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.entity.Money;
-import us.hypermediocrity.springclean.domain.mapping.LineItemView;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
+import us.hypermediocrity.springclean.domain.usecase.transfer.LineItemView;
 
 @ExtendWith(MockitoExtension.class)
 class ViewInvoiceImplTest {
@@ -36,7 +36,7 @@ class ViewInvoiceImplTest {
   };
 
   @InjectMocks
-  ViewInvoice usecase;
+  ViewInvoiceUsecase usecase;
 
   private Invoice simpleInvoice;
   private Invoice multipleItemInvoice;
@@ -54,10 +54,10 @@ class ViewInvoiceImplTest {
 
     assertEquals("Acme Corp", report.customerName());
     assertEquals("account", report.accountNumber());
-    assertEquals("simple", report.invoiceId());
-    assertEquals("2022-03-31", report.invoiceDate());
-    assertEquals("USD 0.00", report.invoiceTotal());
-    assertEquals(0, report.lineItems().size());
+    assertEquals("simple", report.id());
+    assertEquals("2022-03-31", report.date());
+    assertEquals("USD 0.00", report.total());
+    assertEquals(0, report.items().size());
   }
 
   @Test
@@ -66,28 +66,28 @@ class ViewInvoiceImplTest {
 
     assertEquals("Acme Corp", report.customerName());
     assertEquals("account", report.accountNumber());
-    assertEquals("multi", report.invoiceId());
-    assertEquals("2022-01-01", report.invoiceDate());
-    assertEquals("USD 196.80", report.invoiceTotal());
-    assertEquals(3, report.lineItems().size());
+    assertEquals("multi", report.id());
+    assertEquals("2022-01-01", report.date());
+    assertEquals("USD 196.80", report.total());
+    assertEquals(3, report.items().size());
 
-    LineItemView lineItemView = report.lineItems().get(0);
+    var lineItemView = report.items().get(0);
     assertEquals("product-a", lineItemView.productId());
     assertEquals(4, lineItemView.quantity());
     assertEquals("USD 39.95", lineItemView.unitPrice());
-    assertEquals("USD 159.80", lineItemView.lineItemTotal());
+    assertEquals("USD 159.80", lineItemView.totalPrice());
 
-    lineItemView = report.lineItems().get(1);
+    lineItemView = report.items().get(1);
     assertEquals("product-b", lineItemView.productId());
     assertEquals(1, lineItemView.quantity());
     assertEquals("USD 2.00", lineItemView.unitPrice());
-    assertEquals("USD 2.00", lineItemView.lineItemTotal());
+    assertEquals("USD 2.00", lineItemView.totalPrice());
 
-    lineItemView = report.lineItems().get(2);
+    lineItemView = report.items().get(2);
     assertEquals("product-c", lineItemView.productId());
     assertEquals(2, lineItemView.quantity());
     assertEquals("USD 17.50", lineItemView.unitPrice());
-    assertEquals("USD 35.00", lineItemView.lineItemTotal());
+    assertEquals("USD 35.00", lineItemView.totalPrice());
   }
 
   @Test
@@ -102,27 +102,27 @@ class ViewInvoiceImplTest {
 
     assertEquals("Acme Corp", report.customerName());
     assertEquals("account", report.accountNumber());
-    assertEquals("multi", report.invoiceId());
-    assertEquals("2022-01-01", report.invoiceDate());
-    assertEquals("EUR 177.12", report.invoiceTotal());
-    assertEquals(3, report.lineItems().size());
+    assertEquals("multi", report.id());
+    assertEquals("2022-01-01", report.date());
+    assertEquals("EUR 177.12", report.total());
+    assertEquals(3, report.items().size());
 
-    LineItemView lineItemView = report.lineItems().get(0);
+    LineItemView lineItemView = report.items().get(0);
     assertEquals("product-a", lineItemView.productId());
     assertEquals(4, lineItemView.quantity());
     assertEquals("EUR 35.96", lineItemView.unitPrice());
-    assertEquals("EUR 143.82", lineItemView.lineItemTotal());
+    assertEquals("EUR 143.82", lineItemView.totalPrice());
 
-    lineItemView = report.lineItems().get(1);
+    lineItemView = report.items().get(1);
     assertEquals("product-b", lineItemView.productId());
     assertEquals(1, lineItemView.quantity());
     assertEquals("EUR 1.80", lineItemView.unitPrice());
-    assertEquals("EUR 1.80", lineItemView.lineItemTotal());
+    assertEquals("EUR 1.80", lineItemView.totalPrice());
 
-    lineItemView = report.lineItems().get(2);
+    lineItemView = report.items().get(2);
     assertEquals("product-c", lineItemView.productId());
     assertEquals(2, lineItemView.quantity());
     assertEquals("EUR 15.75", lineItemView.unitPrice());
-    assertEquals("EUR 31.50", lineItemView.lineItemTotal());
+    assertEquals("EUR 31.50", lineItemView.totalPrice());
   }
 }

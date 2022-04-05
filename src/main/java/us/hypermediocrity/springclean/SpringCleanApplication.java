@@ -11,8 +11,6 @@ import us.hypermediocrity.springclean.adapter.currencyexchange.CurrencyConverter
 import us.hypermediocrity.springclean.adapter.customer.CustomerPortAdapter;
 import us.hypermediocrity.springclean.adapter.invoice.InvoicePortAdapter;
 import us.hypermediocrity.springclean.adapter.paypal.PayPalAdapter;
-import us.hypermediocrity.springclean.domain.Application;
-import us.hypermediocrity.springclean.domain.ApplicationImpl;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.CustomerPort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
@@ -46,12 +44,9 @@ public class SpringCleanApplication {
   @Autowired
   MoneyTransferPort creditCardPort;
 
-  // TODO I'd like to do this and still keep ApplicationImpl() package-private.
-  // Alternatively, maybe move ApplicationImpl to some other package? Or use
-  // Jigsaw modules?
   @Bean
-  public Application getApplication() {
-    return new ApplicationImpl(exchangePort, invoicePort, customerPort, transferPort);
+  public Usecases getApplication() {
+    return new Usecases(exchangePort, invoicePort, customerPort, transferPort);
   }
 
   @Bean

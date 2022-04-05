@@ -1,4 +1,4 @@
-package us.hypermediocrity.springclean.domain.mapping;
+package us.hypermediocrity.springclean.domain.usecase.transfer;
 
 import java.util.Currency;
 
@@ -47,11 +47,8 @@ class LineItemViewBuilder {
   }
 
   LineItemView build() {
-    var item = new LineItemView();
-    item.productId(productId);
-    item.quantity(quantity);
-    item.unitPrice(exchangePort.convert(unitPrice, currency));
-    item.totalPrice(exchangePort.convert(totalPrice, currency));
+    var item = new LineItemView(productId, quantity, exchangePort.convert(unitPrice, currency).toString(),
+        exchangePort.convert(totalPrice, currency).toString());
     return item;
   }
 }

@@ -17,12 +17,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.entity.Money;
 import us.hypermediocrity.springclean.domain.entity.Payment;
-import us.hypermediocrity.springclean.domain.entity.PaymentResult.Reason;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
 import us.hypermediocrity.springclean.domain.port.InvoicePort;
 import us.hypermediocrity.springclean.domain.port.MoneyTransferPort;
 import us.hypermediocrity.springclean.domain.port.TransferResponse;
-import us.hypermediocrity.springclean.domain.port.TransferResponse.Status;
+import us.hypermediocrity.springclean.domain.usecase.transfer.Reason;
+import us.hypermediocrity.springclean.domain.usecase.transfer.Status;
 
 @ExtendWith(MockitoExtension.class)
 class MakePaymentTest {
@@ -41,7 +41,7 @@ class MakePaymentTest {
   };
 
   @InjectMocks
-  private MakePayment usecase;
+  private MakePaymentUsecase usecase;
 
   private Invoice multiInvoice;
 

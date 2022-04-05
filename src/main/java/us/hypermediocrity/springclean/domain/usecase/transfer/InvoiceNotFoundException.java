@@ -1,4 +1,4 @@
-package us.hypermediocrity.springclean.domain;
+package us.hypermediocrity.springclean.domain.usecase.transfer;
 
 public class InvoiceNotFoundException extends DomainException {
   private static final long serialVersionUID = 1L;

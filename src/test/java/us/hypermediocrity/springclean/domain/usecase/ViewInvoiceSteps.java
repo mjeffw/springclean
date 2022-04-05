@@ -6,8 +6,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import us.hypermediocrity.springclean.domain.DomainException;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangePort;
+import us.hypermediocrity.springclean.domain.port.CustomerPort;
+import us.hypermediocrity.springclean.domain.port.InvoicePort;
+import us.hypermediocrity.springclean.domain.usecase.transfer.DomainException;
 
 @SpringBootTest
 public class ViewInvoiceSteps {
@@ -16,7 +18,13 @@ public class ViewInvoiceSteps {
   @Autowired
   private CurrencyExchangePort exchangePort;
 
-  private ViewInvoice usecase = new ViewInvoice(exchangePort);
+  @Autowired
+  private InvoicePort invoicePort;
+
+  @Autowired
+  private CustomerPort customerPort;
+
+  private ViewInvoice usecase = new ViewInvoiceUsecase(invoicePort, customerPort, exchangePort);
 
   @Given("invoice number {string} does not exist")
   public void invoiceNumberDoesNotExist(String int1) {
