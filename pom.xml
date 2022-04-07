@@ -9,9 +9,21 @@
   </parent>
   <groupId>us.hypermediocrity</groupId>
   <artifactId>springclean</artifactId>
+  <packaging>pom</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>springclean</name>
   <description>Demo project for DexNexus session Spring Cleaning</description>
+  <modules>
+    <module>domain</module>
+    <module>application</module>
+    <module>adapter-invoices</module>
+    <module>adapter-customers</module>
+    <module>adapter-currencyexchange</module>
+    <module>adapter-paymentrouter</module>
+    <module>adapter-creditcard</module>
+    <module>adapter-bankaccount</module>
+    <module>adapter-paypal</module>
+  </modules>
   <properties>
     <java.version>17</java.version>
   </properties>
@@ -64,12 +76,4 @@
     </dependency>
   </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 </project>
