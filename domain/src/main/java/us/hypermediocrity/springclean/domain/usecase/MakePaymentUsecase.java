@@ -12,16 +12,16 @@ import us.hypermediocrity.springclean.domain.common.PaymentInfo;
 import us.hypermediocrity.springclean.domain.common.PaymentReason;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangeService;
-import us.hypermediocrity.springclean.domain.port.Invoices;
+import us.hypermediocrity.springclean.domain.port.InvoiceEntityGateway;
 import us.hypermediocrity.springclean.domain.port.PaymentService;
 import us.hypermediocrity.springclean.domain.port.PaymentStatus;
 
 public class MakePaymentUsecase implements MakePayment {
-  private final Invoices invoices;
+  private final InvoiceEntityGateway invoices;
   private final CurrencyExchangeService exchangeService;
   private final PaymentService paymentService;
 
-  public MakePaymentUsecase(Invoices invoices, CurrencyExchangeService exchangeService, PaymentService paymentService) {
+  public MakePaymentUsecase(InvoiceEntityGateway invoices, CurrencyExchangeService exchangeService, PaymentService paymentService) {
     this.invoices = invoices;
     this.exchangeService = exchangeService;
     this.paymentService = paymentService;

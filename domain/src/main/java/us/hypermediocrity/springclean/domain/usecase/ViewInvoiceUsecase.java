@@ -7,8 +7,8 @@ import us.hypermediocrity.springclean.domain.common.InvoiceNotFoundException;
 import us.hypermediocrity.springclean.domain.entity.Customer;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangeService;
-import us.hypermediocrity.springclean.domain.port.Customers;
-import us.hypermediocrity.springclean.domain.port.Invoices;
+import us.hypermediocrity.springclean.domain.port.CustomerEntityGateway;
+import us.hypermediocrity.springclean.domain.port.InvoiceEntityGateway;
 import us.hypermediocrity.springclean.domain.utils.InvoiceInfoBuilder;
 
 /**
@@ -19,10 +19,10 @@ import us.hypermediocrity.springclean.domain.utils.InvoiceInfoBuilder;
  */
 public class ViewInvoiceUsecase implements ViewInvoice {
   private final CurrencyExchangeService exchangePort;
-  private final Invoices invoices;
-  private final Customers customers;
+  private final InvoiceEntityGateway invoices;
+  private final CustomerEntityGateway customers;
 
-  public ViewInvoiceUsecase(Invoices invoicePort, Customers customerPort, CurrencyExchangeService exchangePort) {
+  public ViewInvoiceUsecase(InvoiceEntityGateway invoicePort, CustomerEntityGateway customerPort, CurrencyExchangeService exchangePort) {
     this.invoices = invoicePort;
     this.customers = customerPort;
     this.exchangePort = exchangePort;

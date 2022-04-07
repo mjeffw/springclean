@@ -26,7 +26,7 @@ import us.hypermediocrity.springclean.domain.common.PaymentInfo;
 import us.hypermediocrity.springclean.domain.common.PaymentReason;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangeService;
-import us.hypermediocrity.springclean.domain.port.Invoices;
+import us.hypermediocrity.springclean.domain.port.InvoiceEntityGateway;
 import us.hypermediocrity.springclean.domain.port.PaymentResponse;
 import us.hypermediocrity.springclean.domain.port.PaymentService;
 import us.hypermediocrity.springclean.domain.port.PaymentStatus;
@@ -34,7 +34,7 @@ import us.hypermediocrity.springclean.domain.port.PaymentStatus;
 @ExtendWith(MockitoExtension.class)
 class MakePaymentTest {
   @Mock
-  Invoices invoices;
+  InvoiceEntityGateway invoices;
 
   @Mock
   PaymentService paymentService;

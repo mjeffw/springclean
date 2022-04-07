@@ -12,8 +12,8 @@ import us.hypermediocrity.springclean.adapter.customer.CustomersAdapter;
 import us.hypermediocrity.springclean.adapter.invoice.InvoicesAdapter;
 import us.hypermediocrity.springclean.adapter.paypal.PayPalAdapter;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangeService;
-import us.hypermediocrity.springclean.domain.port.Customers;
-import us.hypermediocrity.springclean.domain.port.Invoices;
+import us.hypermediocrity.springclean.domain.port.CustomerEntityGateway;
+import us.hypermediocrity.springclean.domain.port.InvoiceEntityGateway;
 import us.hypermediocrity.springclean.domain.port.MoneyTransferPortRouter;
 import us.hypermediocrity.springclean.domain.port.PaymentService;
 import us.hypermediocrity.springclean.domain.usecase.MakePayment;
@@ -26,8 +26,8 @@ public class SpringCleanApplication {
     SpringApplication.run(SpringCleanApplication.class, args);
   }
 
-  @Autowired Invoices invoices;
-  @Autowired Customers customers;
+  @Autowired InvoiceEntityGateway invoices;
+  @Autowired CustomerEntityGateway customers;
   @Autowired CurrencyExchangeService exchangeService;
   @Autowired PaymentService paymentService;
   @Autowired PaymentService payPalPaymentService;
@@ -47,12 +47,12 @@ public class SpringCleanApplication {
   }
 
   @Bean
-  public Invoices getInvoicePort() {
+  public InvoiceEntityGateway getInvoicePort() {
     return new InvoicesAdapter();
   }
 
   @Bean
-  public Customers getCustomerPort() {
+  public CustomerEntityGateway getCustomerPort() {
     return new CustomersAdapter();
   }
 
