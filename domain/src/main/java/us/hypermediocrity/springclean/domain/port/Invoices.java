@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 
-public interface InvoiceEntityGateway {
+public interface Invoices {
   Optional<Invoice> getInvoice(String invoiceId);
 
   void update(Invoice invoice);

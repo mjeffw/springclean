@@ -22,8 +22,12 @@ import us.hypermediocrity.springclean.domain.common.PaymentType;
 
 @RestController
 public class InvoiceController {
-  @Autowired
-  Usecases usecases;
+  @Autowired Usecases usecases;
+
+  @GetMapping("/ping")
+  public String ping() {
+    return "running";
+  }
 
   @GetMapping("/invoice/{id}")
   public InvoiceInfo viewInvoice(@PathVariable("id") String invoiceId) throws DomainException {

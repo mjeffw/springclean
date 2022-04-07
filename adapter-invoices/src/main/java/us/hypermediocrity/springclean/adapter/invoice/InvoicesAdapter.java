@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import us.hypermediocrity.springclean.domain.entity.Invoice;
-import us.hypermediocrity.springclean.domain.port.InvoiceEntityGateway;
+import us.hypermediocrity.springclean.domain.port.Invoices;
 
-public class InvoicesAdapter implements InvoiceEntityGateway {
+public class InvoicesAdapter implements Invoices {
   @Override
   public Optional<Invoice> getInvoice(String invoiceId) {
     // TODO Auto-generated method stub

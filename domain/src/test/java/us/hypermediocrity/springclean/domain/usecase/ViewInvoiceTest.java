@@ -21,13 +21,13 @@ import us.hypermediocrity.springclean.domain.common.InvoiceNotFoundException;
 import us.hypermediocrity.springclean.domain.common.LineItemInfo;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangeService;
-import us.hypermediocrity.springclean.domain.port.CustomerEntityGateway;
-import us.hypermediocrity.springclean.domain.port.InvoiceEntityGateway;
+import us.hypermediocrity.springclean.domain.port.Customers;
+import us.hypermediocrity.springclean.domain.port.Invoices;
 
 @ExtendWith(MockitoExtension.class)
 class ViewInvoiceTest {
-  @Mock InvoiceEntityGateway invoices;
-  @Mock CustomerEntityGateway customers;
+  @Mock Invoices invoices;
+  @Mock Customers customers;
   @Mock CurrencyExchangeService exchangeService;
   @InjectMocks ViewInvoiceUsecase usecase;
 
