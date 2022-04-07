@@ -37,8 +37,7 @@ class InvoiceControllerTest {
   }
 
   @Test
-  void testViewSimplInvoice() throws Exception {
-    Mockito.when(invoices.getInvoice("badinvoice")).thenReturn(Optional.of(simpleInvoice));
+  void testViewSimpleInvoice() throws Exception {
     mockMvc.perform(get("/invoice/badinvoice")).andDo(print()).andExpect(status().isNotFound());
   }
 }
