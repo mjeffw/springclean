@@ -26,17 +26,10 @@ import us.hypermediocrity.springclean.domain.port.InvoiceEntityGateway;
 
 @ExtendWith(MockitoExtension.class)
 class ViewInvoiceTest {
-  @Mock
-  InvoiceEntityGateway invoices;
-
-  @Mock
-  CustomerEntityGateway customers;
-
-  @Mock
-  CurrencyExchangeService exchangeService;
-
-  @InjectMocks
-  ViewInvoice usecase;
+  @Mock InvoiceEntityGateway invoices;
+  @Mock CustomerEntityGateway customers;
+  @Mock CurrencyExchangeService exchangeService;
+  @InjectMocks ViewInvoiceUsecase usecase;
 
   private Invoice simpleInvoice;
   private Invoice multiInvoice;

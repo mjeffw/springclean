@@ -33,28 +33,16 @@ import us.hypermediocrity.springclean.domain.port.PaymentStatus;
 
 @ExtendWith(MockitoExtension.class)
 class MakePaymentTest {
-  @Mock
-  InvoiceEntityGateway invoices;
-
-  @Mock
-  PaymentService paymentService;
-
-  @Mock
-  CurrencyExchangeService exchangePort;
-
-  @InjectMocks
-  private MakePayment usecase;
+  @Mock InvoiceEntityGateway invoices;
+  @Mock PaymentService paymentService;
+  @Mock CurrencyExchangeService exchangePort;
+  @InjectMocks private MakePaymentUsecase usecase;
 
   private Invoice multiInvoice;
-
   private Invoice simpleInvoice;
-
   private double amount = 196.80;
-
   private Money invoicedAmount = new Money(amount, USD);
-
   private double exchangeRateEuroToDollar = 0.9;
-
   private double exchangeRateDollarToEuro = 1.0 / exchangeRateEuroToDollar;
 
   @BeforeEach

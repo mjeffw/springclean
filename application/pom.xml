@@ -14,42 +14,51 @@
       <groupId>us.hypermediocrity</groupId>
       <artifactId>domain</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>us.hypermediocrity</groupId>
       <artifactId>adapter-invoices</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>us.hypermediocrity</groupId>
       <artifactId>adapter-customers</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>us.hypermediocrity</groupId>
       <artifactId>adapter-currencyexchange</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>us.hypermediocrity</groupId>
       <artifactId>adapter-paymentrouter</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>us.hypermediocrity</groupId>
       <artifactId>adapter-bankaccount</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>us.hypermediocrity</groupId>
       <artifactId>adapter-creditcard</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>us.hypermediocrity</groupId>
       <artifactId>adapter-paypal</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
+    
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
