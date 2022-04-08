@@ -19,8 +19,7 @@ class SpringCleanArchitectureTest {
   /**
    * No cycles between packages are allowed.
    */
-  @ArchTest static final ArchRule noCycles = slices().matching("us.hypermediocrity.springclean.(*)..").should()
-      .beFreeOfCycles();
+  @ArchTest static final ArchRule noCycles = slices().matching("..springclean.(*)..").should().beFreeOfCycles();
 
   /**
    * Package springclean.common contains common data types or utilities that other

@@ -1,6 +1,8 @@
 # springclean
 Demo of SpringBoot + Clean Architecture
 
+This Java/Maven project illustrates one way to design a SpringBoot application to be compatible with the Clean (Hexagonal) architecture principles. It's not a fully working application; specifically, all the adapters except `adapter.restapi` are just stubs.
+
 ## What is Architecture?
  - Big ‘A’ vs. little ‘a’ architecture
  - Big A - make sure your application works in its context.
