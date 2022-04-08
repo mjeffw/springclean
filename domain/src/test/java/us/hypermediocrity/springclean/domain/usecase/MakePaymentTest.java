@@ -21,8 +21,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import us.hypermediocrity.springclean.common.Money;
-import us.hypermediocrity.springclean.domain.common.InvoiceNotFoundException;
-import us.hypermediocrity.springclean.domain.common.PaymentReason;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangeService;
 import us.hypermediocrity.springclean.domain.port.Invoices;
@@ -30,6 +28,8 @@ import us.hypermediocrity.springclean.domain.port.PaymentInfo;
 import us.hypermediocrity.springclean.domain.port.PaymentResponse;
 import us.hypermediocrity.springclean.domain.port.PaymentService;
 import us.hypermediocrity.springclean.domain.port.PaymentStatus;
+import us.hypermediocrity.springclean.domain.usecase.common.InvoiceNotFoundException;
+import us.hypermediocrity.springclean.domain.usecase.common.PaymentReason;
 
 @ExtendWith(MockitoExtension.class)
 class MakePaymentTest {

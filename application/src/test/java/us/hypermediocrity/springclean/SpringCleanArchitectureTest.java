@@ -39,26 +39,21 @@ class SpringCleanArchitectureTest {
       .dependOnClassesThat().resideOutsideOfPackages(JAVA, COMMON, DOMAIN);
 
   /**
-   * 
+   * Adapters should not depend on each other, just domain.
    */
+  @ArchTest static final ArchRule adaptersCannotDependOnEachOther = slices().matching("..springclean.adapter..")
+      .should().notDependOnEachOther();
 
   /**
-   * Package springclean.domain.common depends only on springclean.common.
-   */
-  @ArchTest static final ArchRule domainCommonOnlyDependsOnCommon = noClasses().that().resideInAPackage(DOMAIN_COMMON)
-      .should().dependOnClassesThat().resideOutsideOfPackages(JAVA, COMMON, DOMAIN_COMMON);
-
-  /**
-   * Package springclean.domain.entity depends only on springclean.domain.common.
+   * Package springclean.domain.entity depends only on springclean.common.
    */
   @ArchTest static final ArchRule domainEntityOnlyDependsOnDomainCommon = noClasses().that()
       .resideInAPackage(DOMAIN_ENTITY).should().dependOnClassesThat()
-      .resideOutsideOfPackages(JAVA, COMMON, DOMAIN_ENTITY, DOMAIN_COMMON);
+      .resideOutsideOfPackages(JAVA, COMMON, DOMAIN_ENTITY);
 
   /**
-   * Package springclean.domain.port depends only on springclean.domain.entity and
-   * springclean.domain.common.
+   * Package springclean.domain.port depends only on springclean.domain.entity.
    */
-  @ArchTest static final ArchRule domainPortOnlyDependsOnCommon = noClasses().that().resideInAPackage(DOMAIN_PORT)
-      .should().dependOnClassesThat().resideOutsideOfPackages(JAVA, COMMON, DOMAIN_ENTITY, DOMAIN_COMMON, DOMAIN_PORT);
+  @ArchTest static final ArchRule domainPortOnlyDependsOnEntity = noClasses().that().resideInAPackage(DOMAIN_PORT)
+      .should().dependOnClassesThat().resideOutsideOfPackages(JAVA, COMMON, DOMAIN_ENTITY, DOMAIN_PORT);
 }

@@ -1,14 +1,14 @@
 package us.hypermediocrity.springclean.domain.usecase;
 
-import us.hypermediocrity.springclean.domain.common.CustomerNotFoundException;
-import us.hypermediocrity.springclean.domain.common.DomainException;
-import us.hypermediocrity.springclean.domain.common.InvoiceInfo;
-import us.hypermediocrity.springclean.domain.common.InvoiceNotFoundException;
 import us.hypermediocrity.springclean.domain.entity.Customer;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangeService;
 import us.hypermediocrity.springclean.domain.port.Customers;
 import us.hypermediocrity.springclean.domain.port.Invoices;
+import us.hypermediocrity.springclean.domain.usecase.common.CustomerNotFoundException;
+import us.hypermediocrity.springclean.domain.usecase.common.DomainException;
+import us.hypermediocrity.springclean.domain.usecase.common.InvoiceInfo;
+import us.hypermediocrity.springclean.domain.usecase.common.InvoiceNotFoundException;
 import us.hypermediocrity.springclean.domain.utils.InvoiceInfoBuilder;
 
 /**

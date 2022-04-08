@@ -16,13 +16,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import us.hypermediocrity.springclean.domain.common.CustomerNotFoundException;
-import us.hypermediocrity.springclean.domain.common.InvoiceNotFoundException;
-import us.hypermediocrity.springclean.domain.common.LineItemInfo;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangeService;
 import us.hypermediocrity.springclean.domain.port.Customers;
 import us.hypermediocrity.springclean.domain.port.Invoices;
+import us.hypermediocrity.springclean.domain.usecase.common.CustomerNotFoundException;
+import us.hypermediocrity.springclean.domain.usecase.common.InvoiceNotFoundException;
+import us.hypermediocrity.springclean.domain.usecase.common.LineItemInfo;
 
 @ExtendWith(MockitoExtension.class)
 class ViewInvoiceTest {

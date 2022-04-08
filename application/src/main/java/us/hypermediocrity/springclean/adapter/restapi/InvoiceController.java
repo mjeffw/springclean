@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import us.hypermediocrity.springclean.Usecases;
 import us.hypermediocrity.springclean.common.Money;
-import us.hypermediocrity.springclean.domain.common.DomainException;
-import us.hypermediocrity.springclean.domain.common.InvoiceInfo;
-import us.hypermediocrity.springclean.domain.common.InvoiceNotFoundException;
-import us.hypermediocrity.springclean.domain.common.PaymentConfirmation;
 import us.hypermediocrity.springclean.domain.port.PaymentInfo;
 import us.hypermediocrity.springclean.domain.port.PaymentType;
+import us.hypermediocrity.springclean.domain.usecase.common.DomainException;
+import us.hypermediocrity.springclean.domain.usecase.common.InvoiceInfo;
+import us.hypermediocrity.springclean.domain.usecase.common.InvoiceNotFoundException;
+import us.hypermediocrity.springclean.domain.usecase.common.PaymentConfirmation;
 
 @RestController
 public class InvoiceController {

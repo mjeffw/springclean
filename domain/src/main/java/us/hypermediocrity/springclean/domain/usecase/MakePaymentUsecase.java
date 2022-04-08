@@ -5,16 +5,16 @@ import static us.hypermediocrity.springclean.common.Money.USD;
 import java.util.Currency;
 
 import us.hypermediocrity.springclean.common.Money;
-import us.hypermediocrity.springclean.domain.common.DomainException;
-import us.hypermediocrity.springclean.domain.common.InvoiceNotFoundException;
-import us.hypermediocrity.springclean.domain.common.PaymentConfirmation;
-import us.hypermediocrity.springclean.domain.common.PaymentReason;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangeService;
 import us.hypermediocrity.springclean.domain.port.Invoices;
 import us.hypermediocrity.springclean.domain.port.PaymentInfo;
 import us.hypermediocrity.springclean.domain.port.PaymentService;
 import us.hypermediocrity.springclean.domain.port.PaymentStatus;
+import us.hypermediocrity.springclean.domain.usecase.common.DomainException;
+import us.hypermediocrity.springclean.domain.usecase.common.InvoiceNotFoundException;
+import us.hypermediocrity.springclean.domain.usecase.common.PaymentConfirmation;
+import us.hypermediocrity.springclean.domain.usecase.common.PaymentReason;
 
 public class MakePaymentUsecase implements MakePayment {
   private final Invoices invoices;

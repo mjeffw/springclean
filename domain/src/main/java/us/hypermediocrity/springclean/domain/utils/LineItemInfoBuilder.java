@@ -3,8 +3,8 @@ package us.hypermediocrity.springclean.domain.utils;
 import java.util.Currency;
 
 import us.hypermediocrity.springclean.common.Money;
-import us.hypermediocrity.springclean.domain.common.LineItemInfo;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangeService;
+import us.hypermediocrity.springclean.domain.usecase.common.LineItemInfo;
 
 class LineItemInfoBuilder {
   static LineItemInfoBuilder newInstance(CurrencyExchangeService exchangeService) {

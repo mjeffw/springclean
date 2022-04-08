@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import us.hypermediocrity.springclean.common.Money;
-import us.hypermediocrity.springclean.domain.common.InvoiceInfo;
-import us.hypermediocrity.springclean.domain.common.LineItemInfo;
 import us.hypermediocrity.springclean.domain.entity.Invoice;
 import us.hypermediocrity.springclean.domain.port.CurrencyExchangeService;
+import us.hypermediocrity.springclean.domain.usecase.common.InvoiceInfo;
+import us.hypermediocrity.springclean.domain.usecase.common.LineItemInfo;
 
 public class InvoiceInfoBuilder {
   public static InvoiceInfoBuilder newInstance(CurrencyExchangeService exchangeService) {
