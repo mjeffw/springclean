@@ -41,6 +41,7 @@
   </dependencyManagement>
 
   <dependencies>
+    <!-- springboot -->    
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -50,11 +51,15 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    
+    <!-- modelmapper -->    
     <dependency>
       <groupId>org.modelmapper</groupId>
       <artifactId>modelmapper</artifactId>
       <version>3.0.0</version>
     </dependency>
+    
+    <!-- cucumber -->    
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-java</artifactId>
@@ -70,9 +75,19 @@
       <artifactId>cucumber-junit-platform-engine</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <!-- junit -->    
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-suite-engine</artifactId>
+    </dependency>
+
+    <!-- archunit -->    
+    <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit-junit5</artifactId>
+      <version>0.23.1</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
