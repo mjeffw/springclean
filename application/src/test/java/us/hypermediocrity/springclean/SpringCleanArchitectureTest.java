@@ -12,9 +12,7 @@ class SpringCleanArchitectureTest {
 
   private static final String JAVA = "java..";
   private static final String COMMON = "..springclean.common..";
-  private static final String ADAPTER = "..springclean.adapter..";
   private static final String DOMAIN = "..springclean.domain..";
-  private static final String DOMAIN_COMMON = "..springclean.domain.common..";
   private static final String DOMAIN_ENTITY = "..springclean.domain.entity..";
   private static final String DOMAIN_PORT = "..springclean.domain.port..";
 
@@ -41,7 +39,7 @@ class SpringCleanArchitectureTest {
   /**
    * Adapters should not depend on each other, just domain.
    */
-  @ArchTest static final ArchRule adaptersCannotDependOnEachOther = slices().matching("..springclean.adapter..")
+  @ArchTest static final ArchRule adaptersCannotDependOnEachOther = slices().matching("..springclean.adapter.(*)..")
       .should().notDependOnEachOther();
 
   /**
