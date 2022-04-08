@@ -1,7 +1,7 @@
 package us.hypermediocrity.springclean.adapter.creditcard;
 
 import us.hypermediocrity.springclean.common.Money;
-import us.hypermediocrity.springclean.domain.common.PaymentInfo;
+import us.hypermediocrity.springclean.domain.port.PaymentInfo;
 import us.hypermediocrity.springclean.domain.port.PaymentResponse;
 import us.hypermediocrity.springclean.domain.port.PaymentService;
 

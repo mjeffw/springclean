@@ -1,10 +1,12 @@
-package us.hypermediocrity.springclean.domain.port;
+package us.hypermediocrity.springclean.adapter.paymentrouter;
 
 import java.util.EnumMap;
 
 import us.hypermediocrity.springclean.common.Money;
-import us.hypermediocrity.springclean.domain.common.PaymentInfo;
-import us.hypermediocrity.springclean.domain.common.PaymentType;
+import us.hypermediocrity.springclean.domain.port.PaymentInfo;
+import us.hypermediocrity.springclean.domain.port.PaymentResponse;
+import us.hypermediocrity.springclean.domain.port.PaymentService;
+import us.hypermediocrity.springclean.domain.port.PaymentType;
 
 public class MoneyTransferPortRouter implements PaymentService {
   private EnumMap<PaymentType, PaymentService> map = new EnumMap<>(PaymentType.class);

@@ -17,8 +17,8 @@ import us.hypermediocrity.springclean.domain.common.DomainException;
 import us.hypermediocrity.springclean.domain.common.InvoiceInfo;
 import us.hypermediocrity.springclean.domain.common.InvoiceNotFoundException;
 import us.hypermediocrity.springclean.domain.common.PaymentConfirmation;
-import us.hypermediocrity.springclean.domain.common.PaymentInfo;
-import us.hypermediocrity.springclean.domain.common.PaymentType;
+import us.hypermediocrity.springclean.domain.port.PaymentInfo;
+import us.hypermediocrity.springclean.domain.port.PaymentType;
 
 @RestController
 public class InvoiceController {
